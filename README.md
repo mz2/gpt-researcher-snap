@@ -1,6 +1,6 @@
-# gpt-researcher Snap Packaging
+# Snap packaging for `gpt-researcher`
 
-This project provides Snap packaging for the `gpt-researcher` Python CLI application.
+This project provides Snap packaging for the [gpt-researcher](https://github.com/assafelovic/gpt-researcher) Python CLI application.
 
 ## How to build the Snap
 
