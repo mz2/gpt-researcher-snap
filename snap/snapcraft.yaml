@@ -2,7 +2,6 @@ name: gpt-researcher
 base: core24
 version: "3.2.8"
 summary: AI-powered autonomous agent for research and report generation
-# 79 char long summary
 
 description: |
   GPT Researcher is an open-source autonomous agent designed for comprehensive research and report generation using LLMs. It can search, extract, and compile information from the web, providing detailed, referenced reports.
@@ -36,8 +35,6 @@ parts:
       - ./multi_agents/requirements.txt
     source: https://github.com/assafelovic/gpt-researcher.git
     source-tag: v3.2.8
-    build-packages:
-      - libssl-dev
     stage-packages:
       - python3
       - python3.12
@@ -49,3 +46,8 @@ parts:
       cp $CRAFT_PART_SRC/main.py $CRAFT_PART_INSTALL/bin/main.py
       cp $CRAFT_PART_SRC/cli.py $CRAFT_PART_INSTALL/bin/cli.py
       chmod ugo+x $CRAFT_PART_INSTALL/bin/*.py
+
+      # copy some additional modules in
+      cp -r ./backend $CRAFT_PART_INSTALL/lib/python3.12/site-packages/
+      cp -r ./multi_agents $CRAFT_PART_INSTALL/lib/python3.12/site-packages/
+
