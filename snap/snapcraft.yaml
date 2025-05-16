@@ -1,0 +1,51 @@
+name: gpt-researcher
+base: core24
+version: "3.2.8"
+summary: AI-powered autonomous agent for research and report generation
+# 79 char long summary
+
+description: |
+  GPT Researcher is an open-source autonomous agent designed for comprehensive research and report generation using LLMs. It can search, extract, and compile information from the web, providing detailed, referenced reports.
+
+confinement: strict
+grade: stable
+
+apps:
+  listener:
+    command: bin/entrypoint.sh
+    daemon: simple
+    install-mode: disable
+    restart-condition: on-failure
+
+  gpt-researcher:
+    command: bin/cli.sh
+    plugs: [network, home]
+
+parts:
+  launcher:
+    plugin: dump
+    source: ./snap/local
+    organize:
+      entrypoint.sh: bin/entrypoint.sh
+      cli.sh: bin/cli.sh
+
+  gpt-researcher:
+    plugin: python
+    python-requirements:
+      - ./requirements.txt
+      - ./multi_agents/requirements.txt
+    source: https://github.com/assafelovic/gpt-researcher.git
+    source-tag: v3.2.8
+    build-packages:
+      - libssl-dev
+    stage-packages:
+      - python3
+      - python3.12
+      - python3.12-minimal
+      - libpython3.12-stdlib
+    override-build: |
+      snapcraftctl build
+      mkdir -p $CRAFT_PART_INSTALL/bin
+      cp $CRAFT_PART_SRC/main.py $CRAFT_PART_INSTALL/bin/main.py
+      cp $CRAFT_PART_SRC/cli.py $CRAFT_PART_INSTALL/bin/cli.py
+      chmod ugo+x $CRAFT_PART_INSTALL/bin/*.py
