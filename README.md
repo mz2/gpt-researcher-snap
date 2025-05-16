@@ -21,10 +21,3 @@ This project provides Snap packaging for the [gpt-researcher](https://github.com
    gpt-researcher --help
    ```
 
-## Project Structure
-- `snap/snapcraft.yaml`: Snap packaging configuration
-- `.github/copilot-instructions.md`: Copilot custom instructions
-
-## Notes
-- Make sure the `gpt-researcher` Python package is available in this directory or specify the correct source.
-- Update the `command` field in `snapcraft.yaml` if the entry point differs.
