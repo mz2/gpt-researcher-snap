@@ -1,0 +1,20 @@
+#!/bin/sh
+
+set -e
+
+set_if_unset() {
+  KEY="$1"
+  VALUE="$2"
+  if [ -z "$(snapctl get "$KEY")" ]; then
+    snapctl set "$KEY=$VALUE"
+  fi
+}
+
+set_if_unset openai-api-key ""
+set_if_unset openai-api-base "http://127.0.0.1:11434/v1"
+set_if_unset ollama-base-url "http://127.0.0.1:11434/"
+set_if_unset fast-llm "ollama:qwen3:14b"
+set_if_unset smart-llm "ollama:deepseek-r1:70b"
+set_if_unset strategic-llm "ollama:cogito:70b"
+set_if_unset embedding-provider "ollama"
+set_if_unset ollama-embedding-model "nomic-embed-text"
