@@ -1,6 +1,6 @@
 name: gpt-researcher
 base: core24
-version: "3.2.8"
+version: "v.3.1.7"
 summary: AI-powered autonomous agent for research and report generation
 
 description: |
