@@ -1,0 +1,12 @@
+#!/bin/sh
+
+set -e
+
+snapctl set openai-api-key=""
+snapctl set openai-api-base="http://127.0.0.1:11434/v1"
+snapctl set ollama-base-url="http://127.0.0.1:11434/"
+snapctl set fast-llm="ollama:qwen3:14b"
+snapctl set smart-llm="ollama:deepseek-r1:70b"
+snapctl set strategic-llm="ollama:cogito:70b"
+snapctl set embedding="ollama"
+snapctl set ollama-embedding-model="nomic-embed-text"

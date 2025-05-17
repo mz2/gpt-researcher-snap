@@ -19,7 +19,7 @@ jobs:
       - name: Fetch release versions
         run: |
           VERSION=$(
-            curl -sL https://api.github.com/repos/ollama/ollama/releases | 
+            curl -sL https://api.github.com/repos/assafelovic/gpt-researcher/releases | 
             jq '.[] | select(.prerelease == false) | .tag_name' | sort -rV | head -1
           )
           if [ ${#VERSION} -gt 0 ]; then
@@ -43,6 +43,6 @@ jobs:
           git push origin new-version-$VERSION
           gh pr create --title "New upstream version $VERSION" --body "Latest upstream release" --head new-version-$VERSION --base main
         env:
-          GITHUB_TOKEN: ${{ secrets.OLLAMA_REPO_TOKEN }}
-          GH_TOKEN: ${{ secrets.OLLAMA_REPO_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GPT_RESEARCHER_REPO_TOKEN }}
+          GH_TOKEN: ${{ secrets.GPT_RESEARCHER_REPO_TOKEN }}
           VERSION: ${{ env.VERSION }}

@@ -33,6 +33,8 @@ parts:
     python-requirements:
       - ./requirements.txt
       - ./multi_agents/requirements.txt
+    python-packages:
+      - langchain-ollama
     source: https://github.com/assafelovic/gpt-researcher.git
     source-tag: v3.2.8
     stage-packages:
@@ -50,4 +52,3 @@ parts:
       # copy some additional modules in
       cp -r ./backend $CRAFT_PART_INSTALL/lib/python3.12/site-packages/
       cp -r ./multi_agents $CRAFT_PART_INSTALL/lib/python3.12/site-packages/
-
